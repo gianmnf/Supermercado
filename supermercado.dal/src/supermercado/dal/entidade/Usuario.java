@@ -44,5 +44,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
 }
 
