@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Inheritance(strategy= InheritanceType.JOINED)
+//Coluna para identificar tipo de pessoa
+@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.CHAR)
 public class Pessoa {
 
 	@Id
