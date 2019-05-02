@@ -5,8 +5,10 @@ import javax.persistence.*;
 @Entity
 //Herdando de pessoa
 @Inheritance(strategy= InheritanceType.JOINED)
-//Inserindo F no tipo
+//Inserindo tipo de pessoa - F - funcionário
 @DiscriminatorValue(value = "F")
+//PFK
+@PrimaryKeyJoinColumn(name="idFuncionarioPessoa", referencedColumnName="idPessoa")
 public class Funcionario extends Pessoa{
 	private Double salario;
 
