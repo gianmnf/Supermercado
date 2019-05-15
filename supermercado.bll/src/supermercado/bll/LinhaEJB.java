@@ -19,12 +19,11 @@ public class LinhaEJB implements ILinhaEJB{
 
 		try {
 			linhaDAO.insertOrUpdate(linha);
+			return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
 		}catch(Exception ex) {
 			return new Mensagem("Ocorreu um erro inesperado: " 
 						+ ex.getMessage(),MensagemStatus.erro);
 		}
-		
-		return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
 	}
 
 	@Override
@@ -40,14 +39,13 @@ public class LinhaEJB implements ILinhaEJB{
 			}
 			
 			linhaDAO.delete(linha);
+			return new Mensagem("Excluído com sucesso.",
+					MensagemStatus.sucesso);
 			
 		}catch(Exception ex) {
 			return new Mensagem("Não foi possível excluir: " 
 					+ ex.getMessage(), MensagemStatus.erro);
 		}
-		
-		return new Mensagem("Excluído com sucesso.",
-				MensagemStatus.sucesso);
 		
 	}
 

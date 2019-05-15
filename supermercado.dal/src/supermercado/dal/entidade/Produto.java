@@ -1,6 +1,8 @@
 package supermercado.dal.entidade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.*;
 
 @Entity
@@ -10,20 +12,26 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProduto;
 	
+	@NotNull(message="Informe o nome")
 	private String nome;
 	
+	@NotNull(message="Informe o preço")
 	private Double preco;
 	
+	@NotNull(message="Informe a quantidade em estoque")
 	private Integer qtdeEstoque;
 	
+	@NotNull(message="Informe o peso")
 	private Double peso;
 	
 	@ManyToOne
 	@JoinColumn(name="idLinha")
+	@NotNull(message="Informe a linha")
 	private Linha linha;
 	
 	@ManyToOne
 	@JoinColumn(name="idFornecedor")
+	@NotNull(message="Informe o fornecedor")
 	private Fornecedor fornecedor;
 	
 	@ManyToMany
@@ -31,6 +39,18 @@ public class Produto {
 		joinColumns= @JoinColumn(name="idProduto"),
 		inverseJoinColumns = @JoinColumn(name="idCategoria"))
 	private List<Categoria> categorias;
+	
+	@OneToMany(mappedBy = "produto")
+	private List<VendaProduto> vendaprodutos;
+	
+	
+	public List<VendaProduto> getVendaprodutos() {
+		return vendaprodutos;
+	}
+
+	public void setVendaprodutos(List<VendaProduto> vendaprodutos) {
+		this.vendaprodutos = vendaprodutos;
+	}
 
 	public List<Categoria> getCategorias() {
 		return categorias;

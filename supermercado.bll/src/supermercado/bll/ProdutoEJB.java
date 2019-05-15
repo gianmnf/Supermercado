@@ -1,6 +1,6 @@
 package supermercado.bll;
 
-import supermercado.bll.util.*;	
+import supermercado.bll.util.*;		
 import supermercado.bll.interfaces.*;
 import supermercado.dal.dao.interfaces.IProdutoDAO;
 import supermercado.dal.entidade.*;
@@ -19,12 +19,11 @@ public class ProdutoEJB implements IProdutoEJB{
 
 		try {
 			produtoDAO.insertOrUpdate(produto);
+			return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
 		}catch(Exception ex) {
 			return new Mensagem("Ocorreu um erro inesperado: " 
 						+ ex.getMessage(),MensagemStatus.erro);
 		}
-		
-		return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
 	}
 
 	@Override
@@ -41,13 +40,13 @@ public class ProdutoEJB implements IProdutoEJB{
 			
 			produtoDAO.delete(produto);
 			
+			return new Mensagem("Excluído com sucesso.",
+					MensagemStatus.sucesso);
+			
 		}catch(Exception ex) {
 			return new Mensagem("Não foi possível excluir: " 
 					+ ex.getMessage(), MensagemStatus.erro);
 		}
-		
-		return new Mensagem("Excluído com sucesso.",
-				MensagemStatus.sucesso);
 		
 	}
 

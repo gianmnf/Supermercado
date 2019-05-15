@@ -6,9 +6,9 @@ import javax.persistence.*;
 public class Usuario {
 	
 	@Id
-  /N√£o usar a coluna na inser√ß√£o
+   //N„o usar a coluna na inserÁ„o
 	@Column(name="idUsuarioPessoa", insertable = false, updatable = false)
-	// N√£o √© auto incremento - n√£o usa generated value
+	// N„o È auto incremento - n„o usa generated value
 	private Integer idUsuarioPessoa;
 	
 	private String login;
@@ -18,14 +18,13 @@ public class Usuario {
 	@OneToOne
 	@JoinColumn(name="idUsuarioPessoa", referencedColumnName="idFuncionarioPessoa")
 	private Funcionario funcionario;
-	
 
-	public Integer getIdPessoaUsuario() {
-		return idPessoaUsuario;
+	public Integer getIdUsuarioPessoa() {
+		return idUsuarioPessoa;
 	}
 
-	public void setIdPessoaUsuario(Integer idPessoaUsuario) {
-		this.idPessoaUsuario = idPessoaUsuario;
+	public void setIdUsuarioPessoa(Integer idUsuarioPessoa) {
+		this.idUsuarioPessoa = idUsuarioPessoa;
 	}
 
 	public String getLogin() {
