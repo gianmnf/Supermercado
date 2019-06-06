@@ -19,15 +19,15 @@ public class ProdutoEJB implements IProdutoEJB{
 
 		try {
 			produtoDAO.insertOrUpdate(produto);
-			return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
+			return new Mensagem("Salvo com sucesso.", TipoMensagem.sucesso);
 		}catch(Exception ex) {
 			return new Mensagem("Ocorreu um erro inesperado: " 
-						+ ex.getMessage(),MensagemStatus.erro);
+						+ ex.getMessage(),TipoMensagem.erro);
 		}
 	}
 
 	@Override
-	public Mensagem excluir(Short idProduto) {
+	public Mensagem excluir(Integer idProduto) {
 		
 		
 		try {
@@ -41,17 +41,17 @@ public class ProdutoEJB implements IProdutoEJB{
 			produtoDAO.delete(produto);
 			
 			return new Mensagem("Excluído com sucesso.",
-					MensagemStatus.sucesso);
+					TipoMensagem.sucesso);
 			
 		}catch(Exception ex) {
 			return new Mensagem("Não foi possível excluir: " 
-					+ ex.getMessage(), MensagemStatus.erro);
+					+ ex.getMessage(), TipoMensagem.erro);
 		}
 		
 	}
 
 	@Override
-	public Produto obterPorId(Short idProduto) {
+	public Produto obterPorId(Integer idProduto) {
 		return produtoDAO.findById(idProduto);
 	}
 

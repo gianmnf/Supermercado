@@ -9,9 +9,9 @@ public interface IProdutoEJB {
 	
 		public Mensagem salvar(Produto produto);
 		
-		public Mensagem excluir(Short idProduto);
+		public Mensagem excluir(Integer idProduto);
 		
-		public Produto obterPorId(Short idProduto);
+		public Produto obterPorId(Integer idProduto);
 		
 		public List<Produto> obterTodos();
 		

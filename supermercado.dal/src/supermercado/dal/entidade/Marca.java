@@ -1,14 +1,23 @@
 package supermercado.dal.entidade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.util.*;
 
 @Entity
+@Table(name = "marca") //Opcional
+@NamedQuery(name="marca.count",
+	query = "select count(m) from Marca as m")
 public class Marca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMarca;
 	
+	@Column(name = "descricao")
+	@NotNull(message = "Campo descrição é obrigatório")
+	@Size(max = 50, message = "O campo descrição pode ter no máximo 50 caracteres")
 	private String descricao;
 	
 	@OneToMany(mappedBy="marca")

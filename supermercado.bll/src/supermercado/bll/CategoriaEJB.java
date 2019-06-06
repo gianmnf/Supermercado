@@ -18,10 +18,10 @@ public class CategoriaEJB implements ICategoriaEJB{
 
 		try {
 			categoriaDAO.insertOrUpdate(categoria);
-			return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
+			return new Mensagem("Salvo com sucesso.", TipoMensagem.sucesso);
 		}catch(Exception ex) {
 			return new Mensagem("Ocorreu um erro inesperado: " 
-						+ ex.getMessage(),MensagemStatus.erro);
+						+ ex.getMessage(),TipoMensagem.erro);
 		}
 	}
 
@@ -41,11 +41,11 @@ public class CategoriaEJB implements ICategoriaEJB{
 			}
 			categoriaDAO.delete(categoria);
 			return new Mensagem("Categoria Excluída.",
-					MensagemStatus.sucesso);
+					TipoMensagem.sucesso);
 			
 		}catch(Exception ex) {
 			return new Mensagem("Não foi possível excluir: " 
-					+ ex.getMessage(), MensagemStatus.erro);
+					+ ex.getMessage(), TipoMensagem.erro);
 		}
 		
 	}

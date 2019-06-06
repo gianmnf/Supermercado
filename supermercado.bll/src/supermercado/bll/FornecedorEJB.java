@@ -19,10 +19,10 @@ public class FornecedorEJB implements IFornecedorEJB{
 
 		try {
 			fornecedorDAO.insertOrUpdate(fornecedor);
-			return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
+			return new Mensagem("Salvo com sucesso.", TipoMensagem.sucesso);
 		}catch(Exception ex) {
 			return new Mensagem("Ocorreu um erro inesperado: " 
-						+ ex.getMessage(),MensagemStatus.erro);
+						+ ex.getMessage(),TipoMensagem.erro);
 		}
 	}
 
@@ -44,11 +44,11 @@ public class FornecedorEJB implements IFornecedorEJB{
 			
 			fornecedorDAO.delete(fornecedor);
 			return new Mensagem("Excluído com sucesso.",
-					MensagemStatus.sucesso);
+					TipoMensagem.sucesso);
 			
 		}catch(Exception ex) {
 			return new Mensagem("Não foi possível excluir: " 
-					+ ex.getMessage(), MensagemStatus.erro);
+					+ ex.getMessage(), TipoMensagem.erro);
 		}		
 	}
 

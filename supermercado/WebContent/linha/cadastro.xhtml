@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	  
+	  <ui:composition template="../layout.xhtml">
+	  
+	  	<ui:define name="conteudo">
+	  	
+	  		<p:panel header="Linhas">
+	  		
+	  			<h:form>
+	  			
+	  				<p:growl />
+	  			
+	  				<h:inputHidden value="#{linhaController.linha.idLinha}" />
+	  			
+	  				<h:panelGrid columns="2">
+	  				
+	  					<p:outputLabel value="Descrição:" />
+	  					<p:inputText value="#{linhaController.linha.descricao}" />	
+	  			
+
+	  				</h:panelGrid>
+	  				
+	  				<p:commandButton value="Salvar"
+	  								 actionListener="#{linhaController.salvar()}"
+	  								 update="@form" />
+	  			
+	  				<p:dataTable value="#{linhaController.todos()}"
+	  							 var="linha"
+	  							 paginator="true"
+	  							 rows="10"
+	  							 emptyMessage="Nenhuma linha foi cadastrada">
+	  				
+	  						<p:column headerText="Código">
+	  							#{linha.idLinha}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Descrição">
+	  							#{linha.descricao}
+	  						</p:column>
+	  						
+	  				
+	  						
+	  						<p:column headerText="Editar">
+	  						
+	  							<p:commandButton value="Editar"
+	  								actionListener="#{linhaController.editar(linha)}"
+	  								process="@this"
+	  								update="@form"/>
+	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Excluir">
+	  							
+	  							<p:commandButton value="Excluir"
+	  								actionListener="#{linhaController.excluir(linha.idLinha)}"
+	  								process="@this"
+	  								update="@form" />
+	  							
+	  						</p:column>
+	  				
+	  				</p:dataTable>
+	  				
+	  			</h:form>
+	  		
+	  		</p:panel>
+	  	
+	  	</ui:define>
+	  
+	  </ui:composition>
+
+</html>

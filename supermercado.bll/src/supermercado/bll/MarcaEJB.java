@@ -27,12 +27,12 @@ public class MarcaEJB implements IMarcaEJB{
 		
 		}catch(Exception ex) {
 			return new Mensagem("Ocorreu um erro inesperado: " 
-						+ ex.getMessage(),MensagemStatus.erro);
+						+ ex.getMessage(),TipoMensagem.erro);
 		}finally {
 			//Fecha conexão
 		}
 		
-		return new Mensagem("Salvo com sucesso.", MensagemStatus.sucesso);
+		return new Mensagem("Salvo com sucesso.", TipoMensagem.sucesso);
 	}
 
 	@Override
@@ -54,11 +54,11 @@ public class MarcaEJB implements IMarcaEJB{
 			marcaDAO.delete(marca);
 			
 			return new Mensagem("Excluído com sucesso.",
-					MensagemStatus.sucesso);
+					TipoMensagem.sucesso);
 			
 		}catch(Exception ex) {
 			return new Mensagem("Não foi possível excluir: " 
-					+ ex.getMessage(), MensagemStatus.erro);
+					+ ex.getMessage(), TipoMensagem.erro);
 		}
 		
 	}

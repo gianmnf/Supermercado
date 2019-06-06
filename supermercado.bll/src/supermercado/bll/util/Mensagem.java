@@ -1,17 +1,16 @@
 package supermercado.bll.util;
 
-import supermercado.bll.util.MensagemStatus;
 
 public class Mensagem {
 
 	private String texto;
-	private MensagemStatus status;
+	private TipoMensagem tipo;
 	
 	
 	public Mensagem(String texto,
-			MensagemStatus status) {
+			TipoMensagem tipo) {
 		this.texto = texto;
-		this.status = status;
+		this.tipo = tipo;
 	}
 
 
@@ -25,12 +24,13 @@ public class Mensagem {
 	}
 
 
-	public MensagemStatus getStatus() {
-		return status;
+	public TipoMensagem getTipo() {
+		return tipo;
 	}
 
 
-	public void setStatus(MensagemStatus status) {
-		this.status = status;
+	public void setTipo(TipoMensagem tipo) {
+		this.tipo = tipo;
 	}
+	
 }
