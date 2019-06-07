@@ -1,18 +1,14 @@
 package supermercado.bll.interfaces;
 
-import supermercado.bll.util.*;
-import supermercado.dal.entidade.*;
+import java.util.List;	
 
-import java.util.*;
+import supermercado.dal.entidade.Marca;
+import supermercado.bll.util.Mensagem;
 
 public interface IMarcaEJB {
+
+	public Mensagem salvar(Marca marca);
+	public Mensagem excluir(Short idMarca);
+	public List<Marca> listar();
 	
-		public Mensagem salvar(Marca marca);
-		
-		public Mensagem excluir(Short idMarca);
-		
-		public Marca obterPorId(Short idMarca);
-		
-		public List<Marca> obterTodos();
-		
 }

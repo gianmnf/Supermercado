@@ -1,12 +1,14 @@
 package supermercado.dal.entidade;
 
 import javax.persistence.*;
+
 import java.util.*;
 
 @Entity
 public class Venda {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idVenda;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -16,7 +18,7 @@ public class Venda {
 	@JoinColumn(name="idPessoa")
 	private Pessoa pessoa;
 	
-	@OneToMany(mappedBy="venda")
+	@OneToMany(mappedBy = "venda")
 	private List<VendaProduto> vendaProdutos;
 
 	public Integer getIdVenda() {
@@ -75,6 +77,7 @@ public class Venda {
 			return false;
 		return true;
 	}
+	
 	
 	
 }

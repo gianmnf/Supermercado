@@ -1,6 +1,6 @@
 package supermercado.controller;
 
-import java.util.List;			
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +17,7 @@ import supermercado.dal.entidade.Fornecedor;
 @Named
 @RequestScoped
 public class FornecedorController {
+
 	private Fornecedor fornecedor;
 	
 	@EJB
@@ -30,6 +31,7 @@ public class FornecedorController {
 	}
 	
 	public void salvar() {
+		
 		Mensagem msg = fornecedorEJB.salvar(fornecedor);
 		
 		if(msg.getTipo() == TipoMensagem.sucesso) {
@@ -45,17 +47,21 @@ public class FornecedorController {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							msg.getTexto(),null) );
 		}
+		
+		
 	}
-	
+
 	public List<Fornecedor> todos(){
-		return fornecedorEJB.obterTodos();
+		return fornecedorEJB.listar();
 	}
 	
 	public void editar(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 	
+	
 	public void excluir(Short idFornecedor) {
+		
 		Mensagem msg = fornecedorEJB.excluir(idFornecedor);
 		
 		if(msg.getTipo() == TipoMensagem.sucesso) {
@@ -69,13 +75,21 @@ public class FornecedorController {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							msg.getTexto(),null) );
 		}
+		
+		
 	}
+
+	
+	
 	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
-	
+
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+	
+	
+	
 }

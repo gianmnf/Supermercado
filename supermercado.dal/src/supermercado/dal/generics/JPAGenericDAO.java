@@ -1,10 +1,13 @@
 package supermercado.dal.generics;
 
-import java.util.*;
+import java.util.List;
 import javax.persistence.*;
+
 import java.lang.reflect.*;
 
-public class JPAGenericDAO<T,K> implements IGenericDAO<T,K> {
+public class JPAGenericDAO<T, K> 
+			implements IGenericDAO<T, K> {
+
 	@PersistenceContext
 	protected EntityManager em;
 	
@@ -56,4 +59,6 @@ public class JPAGenericDAO<T,K> implements IGenericDAO<T,K> {
 		return query.getResultList();
 	}
 
+	
+	
 }

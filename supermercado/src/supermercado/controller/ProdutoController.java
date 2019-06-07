@@ -1,6 +1,6 @@
 package supermercado.controller;
 
-import java.util.List;	
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +17,7 @@ import supermercado.dal.entidade.Produto;
 @Named
 @RequestScoped
 public class ProdutoController {
+
 	private Produto produto;
 	
 	@EJB
@@ -30,6 +31,7 @@ public class ProdutoController {
 	}
 	
 	public void salvar() {
+		
 		Mensagem msg = produtoEJB.salvar(produto);
 		
 		if(msg.getTipo() == TipoMensagem.sucesso) {
@@ -45,18 +47,21 @@ public class ProdutoController {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							msg.getTexto(),null) );
 		}
+		
 	}
-	
+
 	public List<Produto> todos(){
-		return produtoEJB.obterTodos();
+		return produtoEJB.listar();
 	}
 	
 	public void editar(Produto produto) {
 		this.produto = produto;
 	}
 	
+	
 	public void excluir(Integer idProduto) {
-Mensagem msg = produtoEJB.excluir(idProduto);
+		
+		Mensagem msg = produtoEJB.excluir(idProduto);
 		
 		if(msg.getTipo() == TipoMensagem.sucesso) {
 			
@@ -69,13 +74,21 @@ Mensagem msg = produtoEJB.excluir(idProduto);
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							msg.getTexto(),null) );
 		}
+		
+		
 	}
+
+	
+	
 	
 	public Produto getProduto() {
 		return produto;
 	}
-	
-	public void setProduto(Produto produto) {
+
+	public void setAutomovel(Produto produto) {
 		this.produto = produto;
 	}
+	
+	
+	
 }

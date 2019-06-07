@@ -1,75 +1,71 @@
 package supermercado.bll;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import supermercado.bll.util.*;			
-import supermercado.bll.interfaces.*;
-import supermercado.dal.dao.interfaces.IMarcaDAO;
-import supermercado.dal.entidade.*;
+import java.util.List;	
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import supermercado.dal.dao.interfaces.IMarcaDAO;
+import supermercado.dal.entidade.Marca;
+import supermercado.bll.interfaces.IMarcaEJB;
+import supermercado.bll.util.Mensagem;
+import supermercado.bll.util.TipoMensagem;
 
 @Stateless
 public class MarcaEJB implements IMarcaEJB{
+
 	@Inject
 	private IMarcaDAO marcaDAO;
 	
 	@Override
 	public Mensagem salvar(Marca marca) {
-
+		
 		try {
 			
-			//Abre conexão
+			//abre a conexão
 			marcaDAO.insertOrUpdate(marca);
-
-		
+			
+			return new Mensagem("Salvo com sucesso.",
+					TipoMensagem.sucesso);
+			
 		}catch(Exception ex) {
-			return new Mensagem("Ocorreu um erro inesperado: " 
-						+ ex.getMessage(),TipoMensagem.erro);
+			
+			return new Mensagem("Erro inesperado: " 
+					+ ex.getMessage(), TipoMensagem.erro);
+			
 		}finally {
-			//Fecha conexão
+			//fecha a conexão
 		}
-		
-		return new Mensagem("Salvo com sucesso.", TipoMensagem.sucesso);
 	}
 
 	@Override
 	public Mensagem excluir(Short idMarca) {
 		
-		
 		try {
 			
-			Marca marca = obterPorId(idMarca);
+			Marca marca = marcaDAO.findById(idMarca);
 			
 			if(marca == null) {
-				throw new Exception("Marca inexistente.");
+				throw new Exception("Marca já foi excluída.");
 			}
 			
-			if(marca.getFornecedores().size() > 0) {
-				throw new Exception("Existem fornecedores vinculados a essa marca");
+			if(marca.getFornecedor().size() > 0) {
+				throw new Exception("Essa marca possui fornecedores vinculados");
 			}
 			
 			marcaDAO.delete(marca);
 			
-			return new Mensagem("Excluído com sucesso.",
-					TipoMensagem.sucesso);
-			
+			return new Mensagem("Marca excluída.", TipoMensagem.sucesso);
 		}catch(Exception ex) {
-			return new Mensagem("Não foi possível excluir: " 
+			return new Mensagem("Erro inesperado: "
 					+ ex.getMessage(), TipoMensagem.erro);
 		}
 		
 	}
 
 	@Override
-	public Marca obterPorId(Short idMarca) {
-		return marcaDAO.findById(idMarca);
-	}
-
-	@Override
-	public List<Marca> obterTodos() {
+	public List<Marca> listar() {
 		return marcaDAO.findAll();
 	}
+
 }

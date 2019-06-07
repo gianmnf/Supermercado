@@ -4,17 +4,19 @@ import javax.persistence.*;
 
 @Entity
 public class VendaProduto {
+
 	@EmbeddedId
 	private VendaProdutoPk id;
+	
 	private Double preco;
 	
 	@ManyToOne
-	@JoinColumn(name="idProduto")
+	@JoinColumn(name = "idProduto")
 	@MapsId("idProduto")
 	private Produto produto;
 	
 	@ManyToOne
-	@JoinColumn(name="idVenda")
+	@JoinColumn(name = "idVenda")
 	@MapsId("idVenda")
 	private Venda venda;
 
@@ -74,6 +76,10 @@ public class VendaProduto {
 			return false;
 		return true;
 	}
+
 	
-		
+	
+	
+	
+	
 }

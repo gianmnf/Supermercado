@@ -1,6 +1,6 @@
 package supermercado.controller;
 
-import java.util.List;	
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -51,7 +51,7 @@ public class MarcaController {
 	}
 
 	public List<Marca> todos(){
-		return marcaEJB.obterTodos();
+		return marcaEJB.listar();
 	}
 	
 	public void editar(Marca marca) {

@@ -1,13 +1,17 @@
 package supermercado.dal.dao;
 
-import supermercado.dal.dao.interfaces.*;				
-import supermercado.dal.entidade.*;
-import supermercado.dal.generics.*;
 
-import javax.enterprise.context.*;
+import javax.enterprise.context.RequestScoped;
+
+import supermercado.dal.dao.interfaces.IMarcaDAO;
+import supermercado.dal.entidade.Marca;
+import supermercado.dal.generics.JPAGenericDAO;
 
 @RequestScoped
-public class MarcaDAO extends JPAGenericDAO<Marca, Short>
-implements IMarcaDAO{
+public class MarcaDAO 
+	extends JPAGenericDAO<Marca, Short>
+	implements IMarcaDAO{
 
+
+	
 }

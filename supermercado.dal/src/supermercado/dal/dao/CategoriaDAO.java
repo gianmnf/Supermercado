@@ -1,13 +1,16 @@
 package supermercado.dal.dao;
 
-import supermercado.dal.dao.interfaces.*;				
-import supermercado.dal.entidade.*;
-import supermercado.dal.generics.*;
+import javax.enterprise.context.RequestScoped;
 
-import javax.enterprise.context.*;
+import supermercado.dal.dao.interfaces.ICategoriaDAO;
+import supermercado.dal.entidade.Categoria;
+import supermercado.dal.generics.JPAGenericDAO;
 
 @RequestScoped
-public class CategoriaDAO extends JPAGenericDAO<Categoria, Short>
-implements ICategoriaDAO{
+public class CategoriaDAO 
+	extends JPAGenericDAO<Categoria, Short>
+	implements ICategoriaDAO{
 
+
+	
 }

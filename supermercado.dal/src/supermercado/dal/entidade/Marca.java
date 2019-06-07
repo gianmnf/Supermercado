@@ -1,42 +1,32 @@
 package supermercado.dal.entidade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import javax.validation.constraints.*;
 import java.util.*;
 
 @Entity
-@Table(name = "marca") //Opcional
+@Table(name = "marca")
 @NamedQuery(name="marca.count",
 	query = "select count(m) from Marca as m")
 public class Marca {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idMarca;
+	private Short idMarca;
 	
 	@Column(name = "descricao")
 	@NotNull(message = "Campo descrição é obrigatório")
 	@Size(max = 50, message = "O campo descrição pode ter no máximo 50 caracteres")
 	private String descricao;
 	
-	@OneToMany(mappedBy="marca")
-	private List<Fornecedor> fornecedores;
-	
+	@OneToMany(mappedBy = "marca", fetch = FetchType.LAZY)
+	private List<Fornecedor> fornecedor;
 
-	public List<Fornecedor> getFornecedores() {
-		return fornecedores;
-	}
-
-	public void setFornecedores(List<Fornecedor> fornecedores) {
-		this.fornecedores = fornecedores;
-	}
-
-	public Integer getIdMarca() {
+	public Short getIdMarca() {
 		return idMarca;
 	}
 
-	public void setIdMarca(Integer idMarca) {
+	public void setIdMarca(Short idMarca) {
 		this.idMarca = idMarca;
 	}
 
@@ -46,6 +36,14 @@ public class Marca {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public List<Fornecedor> getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(List<Fornecedor> fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 	@Override
@@ -74,4 +72,8 @@ public class Marca {
 	}
 	
 	
+	
+	
+	
+
 }

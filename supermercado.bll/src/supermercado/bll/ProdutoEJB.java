@@ -1,63 +1,66 @@
 package supermercado.bll;
 
-import supermercado.bll.util.*;		
-import supermercado.bll.interfaces.*;
-import supermercado.dal.dao.interfaces.IProdutoDAO;
-import supermercado.dal.entidade.*;
-import java.util.*;
+import java.util.List;	
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import supermercado.dal.dao.interfaces.IProdutoDAO;
+import supermercado.dal.entidade.Produto;
+import supermercado.bll.interfaces.IProdutoEJB;
+import supermercado.bll.util.Mensagem;
+import supermercado.bll.util.TipoMensagem;
+
 @Stateless
 public class ProdutoEJB implements IProdutoEJB{
+
 	@Inject
 	private IProdutoDAO produtoDAO;
 	
 	@Override
 	public Mensagem salvar(Produto produto) {
-
+		
 		try {
+		
 			produtoDAO.insertOrUpdate(produto);
-			return new Mensagem("Salvo com sucesso.", TipoMensagem.sucesso);
+			
+			return new Mensagem("Salvo com sucesso.",
+					TipoMensagem.sucesso);
+			
 		}catch(Exception ex) {
-			return new Mensagem("Ocorreu um erro inesperado: " 
-						+ ex.getMessage(),TipoMensagem.erro);
+			
+			return new Mensagem("Erro inesperado: " 
+					+ ex.getMessage(), TipoMensagem.erro);
+			
 		}
 	}
 
 	@Override
 	public Mensagem excluir(Integer idProduto) {
 		
-		
 		try {
 			
-			Produto produto = obterPorId(idProduto);
+			Produto produto = produtoDAO.findById(idProduto);
 			
 			if(produto == null) {
-				throw new Exception("Produto inexistente.");
+				throw new Exception("Produto já foi excluído.");
 			}
+			
+	
 			
 			produtoDAO.delete(produto);
 			
-			return new Mensagem("Excluído com sucesso.",
-					TipoMensagem.sucesso);
-			
+			return new Mensagem("Produto excluído.", TipoMensagem.sucesso);
 		}catch(Exception ex) {
-			return new Mensagem("Não foi possível excluir: " 
+			return new Mensagem("Erro inesperado: "
 					+ ex.getMessage(), TipoMensagem.erro);
 		}
 		
 	}
 
 	@Override
-	public Produto obterPorId(Integer idProduto) {
-		return produtoDAO.findById(idProduto);
-	}
-
-
-	@Override
-	public List<Produto> obterTodos() {
+	public List<Produto> listar() {
 		return produtoDAO.findAll();
 	}
+
 }

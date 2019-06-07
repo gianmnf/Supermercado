@@ -3,6 +3,8 @@
 	<name>supermercado</name>
 	<comment></comment>
 	<projects>
+		<project>supermercado.dal</project>
+		<project>supermercado.bll</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

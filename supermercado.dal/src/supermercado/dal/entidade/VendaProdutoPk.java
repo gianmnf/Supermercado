@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 @Embeddable
 public class VendaProdutoPk {
+
 	private Integer idVenda;
 	private Integer idProduto;
-	
 	public Integer getIdVenda() {
 		return idVenda;
 	}
@@ -48,6 +48,9 @@ public class VendaProdutoPk {
 			return false;
 		return true;
 	}
+	
+	
+	
 	
 	
 }

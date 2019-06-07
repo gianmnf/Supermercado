@@ -1,18 +1,14 @@
 package supermercado.bll.interfaces;
 
-import supermercado.bll.util.*;
-import supermercado.dal.entidade.*;
+import java.util.List;	
 
-import java.util.*;
+import supermercado.dal.entidade.Linha;
+import supermercado.bll.util.Mensagem;
 
 public interface ILinhaEJB {
+
+	public Mensagem salvar(Linha linha);
+	public Mensagem excluir(Short idLinha);
+	public List<Linha> listar();
 	
-		public Mensagem salvar(Linha linha);
-		
-		public Mensagem excluir(Short idLinha);
-		
-		public Linha obterPorId(Short idLinha);
-		
-		public List<Linha> obterTodos();
-		
 }

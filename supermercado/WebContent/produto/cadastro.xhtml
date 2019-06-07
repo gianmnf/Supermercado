@@ -41,28 +41,25 @@
 	  									   itemValue="#{linha}" />
 	  									   
 	  					</p:selectOneMenu>
-
+	  				
 	  					<p:outputLabel value="Nome:" />
-	  					<p:inputText value="#{produtoController.produto.nome}" /> 
+	  					<p:inputText value="#{produtoController.produto.nome}" />	
 	  					
-	  					<p:outputLabel value="Preço:" />
+	  					<p:outputLabel value="Valor:" />
 	  					<p:inputText value="#{produtoController.produto.preco}"/>	
-
-	  					<p:outputLabel value="Quantidade em Estoque:" />
-	  					<p:inputMask value="#{produtoController.produto.qtdeEstoque}" />	
 	  					
-	  					<p:outputLabel value="Peso:" />
-	  					<p:inputText value="#{produtoController.produto.peso}" />	
+	  					<p:outputLabel value="Qtd. Estoque:" />
+	  					<p:inputText value="#{produtoController.produto.quantidadeEstoque}" />	
 	  					
 	  					<p:outputLabel value="Categorias:" />
-	  					<p:selectCheckboxMenu value="#{produtoController.produto.categoria}"
+	  					<p:selectCheckboxMenu value="#{produtoController.produto.categorias}"
 	  							converter="entityConverter"
-	  							label="Categorias">
+	  							label="categorias">
 	  							
 	  							<f:selectItems value="#{categoriaController.todos()}"
-	  								var="o"
-	  								itemLabel="#{o.descricao}"
-	  								itemValue="#{o}" />
+	  								var="c"
+	  								itemLabel="#{c.descricao}"
+	  								itemValue="#{c}" />
 	  							
 	  					
 	  					</p:selectCheckboxMenu>
@@ -92,22 +89,22 @@
 	  						</p:column>
 	  						
 	  						<p:column headerText="Qtd. Estoque">
-	  							#{produto.qtdeEstoque}
-	  						</p:column>
-
-	  						<p:column headerText="Peso">
-	  							#{produto.peso.descricao}
+	  							#{produto.quantidadeEstoque}
 	  						</p:column>
 	  						
 	  						<p:column headerText="Fornecedor">
 	  							#{produto.fornecedor.marca.descricao} - #{produto.fornecedor.descricao}
 	  						</p:column>
 	  						
-	  						<p:column headerText="Categorias">
+	  						<p:column headerText="Linha">
+	  							#{produto.linha.descricao}
+	  						</p:column>
+	  						
+	  						<p:column headerText="categorias">
 	  						
 	  							<ul>
 	  								
-	  								<ui:repeat var="categoria" value="#{produto.categoria}">
+	  								<ui:repeat var="categoria" value="#{produto.categorias}">
 	  									
 	  									<li>#{categoria.descricao}</li>
 	  									

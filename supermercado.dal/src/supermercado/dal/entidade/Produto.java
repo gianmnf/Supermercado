@@ -1,64 +1,47 @@
 package supermercado.dal.entidade;
 
-import javax.persistence.*;
+import javax.persistence.*;	
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import java.util.*;
 
 @Entity
 public class Produto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProduto;
 	
-	@NotNull(message="Informe o nome")
+	@NotNull(message = "Informe o nome")
 	private String nome;
 	
-	@NotNull(message="Informe o preço")
+	@NotNull(message = "Informe o preço")
 	private Double preco;
 	
-	@NotNull(message="Informe a quantidade em estoque")
-	private Integer qtdeEstoque;
-	
-	@NotNull(message="Informe o peso")
-	private Double peso;
+	@NotNull(message = "Informe a qtd. em estoque")
+	@Min(value = 1, message = "Quantidade de produtos inválida.")
+	private Short quantidadeEstoque;
 	
 	@ManyToOne
-	@JoinColumn(name="idLinha")
-	@NotNull(message="Informe a linha")
+	@JoinColumn(name = "idLinha")
+	@NotNull(message = "Informe a linha")
 	private Linha linha;
 	
 	@ManyToOne
-	@JoinColumn(name="idFornecedor")
-	@NotNull(message="Informe o fornecedor")
+	@JoinColumn(name = "idFornecedor")
+	@NotNull(message = "Informe o fornecedor")
 	private Fornecedor fornecedor;
 	
+
 	@ManyToMany
-	@JoinTable(name="idCategoria",
-		joinColumns= @JoinColumn(name="idProduto"),
-		inverseJoinColumns = @JoinColumn(name="idCategoria"))
+	@JoinTable(name = "ProdutoCategoria",
+			joinColumns = @JoinColumn(name = "idProduto"),
+			inverseJoinColumns = @JoinColumn(name = "idCategoria"))
 	private List<Categoria> categorias;
 	
 	@OneToMany(mappedBy = "produto")
-	private List<VendaProduto> vendaprodutos;
-	
-	
-	public List<VendaProduto> getVendaprodutos() {
-		return vendaprodutos;
-	}
-
-	public void setVendaprodutos(List<VendaProduto> vendaprodutos) {
-		this.vendaprodutos = vendaprodutos;
-	}
-
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}
+	private List<VendaProduto> vendaProdutos;
 
 	public Integer getIdProduto() {
 		return idProduto;
@@ -84,20 +67,12 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public Integer getQtdeEstoque() {
-		return qtdeEstoque;
+	public Short getQuantidadeEstoque() {
+		return quantidadeEstoque;
 	}
 
-	public void setQtdeEstoque(Integer qtdeEstoque) {
-		this.qtdeEstoque = qtdeEstoque;
-	}
-
-	public Double getPeso() {
-		return peso;
-	}
-
-	public void setPeso(Double peso) {
-		this.peso = peso;
+	public void setQuantidadeEstoque(Short quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	public Linha getLinha() {
@@ -114,6 +89,22 @@ public class Produto {
 
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public List<VendaProduto> getVendaProdutos() {
+		return vendaProdutos;
+	}
+
+	public void setVendaProdutos(List<VendaProduto> vendaProdutos) {
+		this.vendaProdutos = vendaProdutos;
 	}
 
 	@Override
@@ -139,7 +130,9 @@ public class Produto {
 		} else if (!idProduto.equals(other.idProduto))
 			return false;
 		return true;
-	}
+	}	
+	
+	
 	
 	
 }

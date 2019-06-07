@@ -1,8 +1,7 @@
 package supermercado.controller;
 
-import java.util.List;
+import java.util.List;	
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -52,7 +51,7 @@ public class CategoriaController {
 	}
 
 	public List<Categoria> todos(){
-		return categoriaEJB.obterTodos();
+		return categoriaEJB.listar();
 	}
 	
 	public void editar(Categoria categoria) {
@@ -86,7 +85,7 @@ public class CategoriaController {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setOpcional(Categoria categoria) {
 		this.categoria = categoria;
 	}
 	

@@ -2,30 +2,33 @@ package supermercado.dal.entidade;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
 import java.util.*;
 
 @Entity
 public class Fornecedor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idFornecedor;
+	private Short idFornecedor;
 	
+	@NotNull(message = "Campo descrição é obrigatório")
+	@Size(max = 50, message = "O campo descrição pode ter no máximo 50 caracteres")
 	private String descricao;
 	
-	@OneToMany(mappedBy="fornecedor")
-	private List<Produto> produtos;
-	
-	@ManyToOne
-	@JoinColumn(name="idMarca")
-	@NotNull(message="Este campo é obrigatório")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idMarca")
+	@NotNull(message = "A marca é obrigatória")
 	private Marca marca;
+	
+	@OneToMany(mappedBy = "fornecedor")
+	private List<Produto> produtos;
 
-	public Integer getIdFornecedor() {
+	public Short getIdFornecedor() {
 		return idFornecedor;
 	}
 
-	public void setIdFornecedor(Integer idFornecedor) {
+	public void setIdFornecedor(Short idFornecedor) {
 		this.idFornecedor = idFornecedor;
 	}
 
@@ -37,20 +40,20 @@ public class Fornecedor {
 		this.descricao = descricao;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
 	public Marca getMarca() {
 		return marca;
 	}
 
 	public void setMarca(Marca marca) {
 		this.marca = marca;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
@@ -77,6 +80,7 @@ public class Fornecedor {
 			return false;
 		return true;
 	}
+
 	
 	
 }

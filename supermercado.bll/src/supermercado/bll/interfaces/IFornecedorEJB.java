@@ -1,18 +1,13 @@
 package supermercado.bll.interfaces;
 
-import supermercado.bll.util.*;
-import supermercado.dal.entidade.*;
+import java.util.List;	
 
-import java.util.*;
+import supermercado.dal.entidade.Fornecedor;
+import supermercado.bll.util.Mensagem;
 
 public interface IFornecedorEJB {
 
-		public Mensagem salvar(Fornecedor fornecedor);
-		
-		public Mensagem excluir(Short idFornecedor);
-		
-		public Fornecedor obterPorId(Short idFornecedor);
-		
-		public List<Fornecedor> obterTodos();
-
+	public Mensagem salvar(Fornecedor fornecedor);
+	public Mensagem excluir(Short idFornecedor);
+	public List<Fornecedor> listar();
 }

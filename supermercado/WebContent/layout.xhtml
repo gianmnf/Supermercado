@@ -9,16 +9,21 @@
 		<title>Supermercado</title>
 		<meta name="viewport" 
 			content="width=device-width,initial-scale=1.0"/>
+		<style type="text/css">
+    body, form {
+        background-image: url('res/bkg.png') !important;
+    }
+</style>
 	</h:head>
 	
 	<h:body>
-	
-		<p:menubar>
+
+		<p:menubar rendered="#{autenticacaoController.usuarioAutenticado}">
 			<p:submenu label="Cadastros">
-				<p:menuitem value="Categoria" url="/categoria/cadastro.xhtml" />
+				<p:menuitem value="Marca" url="/marca/cadastro.xhtml" />
 				<p:menuitem value="Fornecedor" url="/fornecedor/cadastro.xhtml" />
 				<p:menuitem value="Linha" url="/linha/cadastro.xhtml" />
-				<p:menuitem value="Marca" url="/marca/cadastro.xhtml" />
+				<p:menuitem value="Categoria" url="/categoria/cadastro.xhtml" />
 				<p:menuitem value="Produto" url="/produto/cadastro.xhtml" />
 			</p:submenu>
 			

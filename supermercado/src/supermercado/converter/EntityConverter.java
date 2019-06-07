@@ -1,6 +1,7 @@
 package supermercado.converter;
 
-import java.io.Serializable;	
+
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
 import javax.faces.component.UIComponent;

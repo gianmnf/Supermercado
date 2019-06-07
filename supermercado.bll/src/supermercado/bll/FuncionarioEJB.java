@@ -1,47 +1,56 @@
 package supermercado.bll;
 
-import java.util.*;
+import java.util.*;	
+
+import supermercado.dal.dao.interfaces.*;
+import supermercado.dal.entidade.*;
 import supermercado.bll.interfaces.*;
 import supermercado.bll.util.Mensagem;
 import supermercado.bll.util.SHA1;
 import supermercado.bll.util.TipoMensagem;
-import supermercado.dal.dao.interfaces.*;
-import supermercado.dal.entidade.*;
+
 import javax.ejb.*;
 import javax.inject.*;
 
 @Stateless
-public class FuncionarioEJB implements IFuncionarioEJB{
+public class FuncionarioEJB implements IFuncionarioEJB {
 
 	@Inject
 	private IFuncionarioDAO funcionarioDAO;
 	
 	@Override
 	public Mensagem salvar(Funcionario funcionario) {
+
 		try {
+			
 			String cpfSemMascara = funcionario.getCpfMascara()
-					.replace(".","")
-					.replace("-","");
+				.replace(".", "")
+				.replace("-", "");
 			
 			funcionario.setCpf(Long.parseLong(cpfSemMascara));
+			
 			Usuario usuario = funcionario.getUsuario();
 			usuario.setFuncionario(funcionario);
 			
 			String senha = SHA1.encryptPassword(usuario.getSenha());
 			usuario.setSenha(senha);
+			
 			funcionarioDAO.insertOrUpdate(funcionario);
 			
-			return new Mensagem("Funcionário Salvo",
+			return new Mensagem("Funcionário salvo.",
 					TipoMensagem.sucesso);
-					
-		}catch(Exception e) {
+			
+		}catch (Exception e) {
 			return new Mensagem(e.getMessage(), TipoMensagem.erro);
 		}
+		
 	}
-	
+
 	@Override
 	public Mensagem excluir(Integer idPessoa) {
+		
 		try {
+			
 			Funcionario funcionario = funcionarioDAO.findById(idPessoa);
 			
 			if(funcionario == null) {
@@ -49,24 +58,27 @@ public class FuncionarioEJB implements IFuncionarioEJB{
 						TipoMensagem.erro);
 			}
 			
-			if(funcionario.getVendas().size() > 0) {
-				return new Mensagem("Funcionário já realizou localizações.",
+			if(funcionario.getLocacoes().size() > 0) {
+				return new Mensagem("Funcionário já realizou locações.",
 						TipoMensagem.erro);
 			}
 			
 			funcionarioDAO.delete(funcionario);
 			
-			return new Mensagem("Funcionário Excluído.",
+			return new Mensagem("Funcionário excluído",
 					TipoMensagem.sucesso);
-		}catch(Exception ex){
+			
+		}catch(Exception ex) {
 			return new Mensagem(ex.getMessage(),
 					TipoMensagem.erro);
+			
 		}
+		
 	}
-	
+
 	@Override
-	public List<Funcionario> listar(){
+	public List<Funcionario> listar() {
 		return funcionarioDAO.findAll();
 	}
-	
+
 }

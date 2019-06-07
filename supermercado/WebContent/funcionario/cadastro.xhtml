@@ -16,7 +16,7 @@
 				
 					<p:growl />
 					
-					<h:inputHidden value="#{funcionarioController.funcionario.idFuncionarioPessoa}" />
+					<h:inputHidden value="#{funcionarioController.funcionario.idPessoa}" />
 				
 					<h:panelGrid columns="2">
 					
@@ -24,7 +24,7 @@
 						<p:inputText value="#{funcionarioController.funcionario.nome}" />
 					
 						<p:outputLabel value="CPF"/>
-						<p:inputMask mask="999.999.999-99"  
+						<p:inputMask mask="999.999.999-99"    
 							value="#{funcionarioController.funcionario.cpfMascara}" />
 							
 						<p:outputLabel value="Data de Nascimento" />
@@ -55,7 +55,7 @@
 								var="funcionario">
 						
 						<p:column headerText="Código">
-							#{funcionario.idFuncionarioPessoa}
+							#{funcionario.idPessoa}
 						</p:column>
 						
 						<p:column headerText="Nome">
@@ -67,9 +67,11 @@
 						</p:column>
 						
 						<p:column headerText="Data de Nascimento">
-						<h:outputText value="#{funcionario.dataNascimento}">
-						<f:convertDateTime type="date" pattern="dd-mm-yyyy" />
-						</h:outputText>
+							
+							<h:outputText value="#{funcionario.dataNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							
 						</p:column>
 						
 						<p:column headerText="Salário">

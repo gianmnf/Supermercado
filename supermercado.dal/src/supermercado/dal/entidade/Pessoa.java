@@ -3,12 +3,13 @@ package supermercado.dal.entidade;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
-//Coluna para identificar tipo de pessoa
-@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.CHAR)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name="tipo", 
+		discriminatorType = DiscriminatorType.CHAR)
 public class Pessoa {
 
 	@Id
@@ -24,36 +25,21 @@ public class Pessoa {
 	private String cpfMascara;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dataNasc;
+	private Date dataNascimento;
 	
 	@OneToMany(mappedBy="pessoa")
-	private List<Venda> vendas;
+	private List<Venda> locacoes;
+
+	public List<Venda> getLocacoes() {
+		return locacoes;
+	}
+
+	public void setLocacoes(List<Venda> locacoes) {
+		this.locacoes = locacoes;
+	}
 
 	public Integer getIdPessoa() {
 		return idPessoa;
-	}
-
-	public String getCpfMascara() {
-		if(cpfMascara == null && cpf != null) {
-			cpfMascara = cpf.toString();
-			while(cpfMascara.length() != 11) {
-				cpfMascara = "0" + cpfMascara;
-			}
-			
-			cpfMascara = cpfMascara.substring(0,3)
-					+ "."
-					+ cpfMascara.substring(3, 6)
-					+ "."
-					+ cpfMascara.substring(6, 9)
-					+ "-"
-					+ cpfMascara.substring(9, 11);
-			}
-		
-			return cpfMascara;
-		}
-
-	public void setCpfMascara(String cpfMascara) {
-		this.cpfMascara = cpfMascara;
 	}
 
 	public void setIdPessoa(Integer idPessoa) {
@@ -76,20 +62,40 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNasc() {
-		return dataNasc;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	
+
+	public String getCpfMascara() {
+		
+		if(cpfMascara == null && cpf != null) {
+			
+			cpfMascara = cpf.toString();
+			
+			while(cpfMascara.length() != 11) {	
+				cpfMascara = "0" + cpfMascara;	
+			}
+			
+			cpfMascara = cpfMascara.substring(0, 3)
+						+ "." 
+						+ cpfMascara.substring(3,6)
+						+ "."
+						+ cpfMascara.substring(6, 9)
+						+ "-"
+						+ cpfMascara.substring(9, 11);
+						
+		}
+		
+		return cpfMascara;
 	}
 
-	public List<Venda> getVendas() {
-		return vendas;
-	}
-
-	public void setVendas(List<Venda> vendas) {
-		this.vendas = vendas;
+	public void setCpfMascara(String cpfMascara) {
+		this.cpfMascara = cpfMascara;
 	}
 
 	@Override

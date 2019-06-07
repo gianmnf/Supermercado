@@ -4,27 +4,28 @@ import javax.persistence.*;
 
 @Entity
 public class Usuario {
+
 	
 	@Id
-   //Não usar a coluna na inserção
-	@Column(name="idUsuarioPessoa", insertable = false, updatable = false)
-	// Não é auto incremento - não usa generated value
-	private Integer idUsuarioPessoa;
+	@Column(name="idPessoaUsuario",
+		insertable = false, updatable = false)
+	private Integer idPessoaUsuario;
 	
 	private String login;
 	
 	private String senha;
 	
 	@OneToOne
-	@JoinColumn(name="idUsuarioPessoa", referencedColumnName="idFuncionarioPessoa")
+	@JoinColumn(name="idPessoaUsuario",
+			referencedColumnName="idPessoaFuncionario")
 	private Funcionario funcionario;
 
-	public Integer getIdUsuarioPessoa() {
-		return idUsuarioPessoa;
+	public Integer getIdPessoaUsuario() {
+		return idPessoaUsuario;
 	}
 
-	public void setIdUsuarioPessoa(Integer idUsuarioPessoa) {
-		this.idUsuarioPessoa = idUsuarioPessoa;
+	public void setIdPessoaUsuario(Integer idPessoaUsuario) {
+		this.idPessoaUsuario = idPessoaUsuario;
 	}
 
 	public String getLogin() {
@@ -42,7 +43,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -50,5 +51,6 @@ public class Usuario {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+	
+	
 }
-

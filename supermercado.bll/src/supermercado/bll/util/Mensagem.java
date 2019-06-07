@@ -1,6 +1,5 @@
 package supermercado.bll.util;
 
-
 public class Mensagem {
 
 	private String texto;
@@ -32,5 +31,9 @@ public class Mensagem {
 	public void setTipo(TipoMensagem tipo) {
 		this.tipo = tipo;
 	}
+
+
+	
+	
 	
 }

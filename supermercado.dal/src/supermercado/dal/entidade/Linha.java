@@ -8,18 +8,18 @@ public class Linha {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer idLinha;
+	private Short idLinha;
 	
 	private String descricao;
 	
-	@OneToMany(mappedBy="linha")
-	private List <Produto> produtos;
+	@OneToMany(mappedBy = "linha")
+	private List<Produto> produtos;
 
-	public Integer getIdLinha() {
+	public Short getIdLinha() {
 		return idLinha;
 	}
 
-	public void setIdLinha(Integer idLinha) {
+	public void setIdLinha(Short idLinha) {
 		this.idLinha = idLinha;
 	}
 
@@ -63,6 +63,7 @@ public class Linha {
 			return false;
 		return true;
 	}
-	
+
+		
 	
 }

@@ -1,15 +1,15 @@
 package supermercado.controller;
 
-import javax.enterprise.context.*;	
+import javax.enterprise.context.*;
 import javax.inject.*;
-import supermercado.dal.entidade.*;
-
 import javax.ejb.*;
+
+import java.util.*;
+
 import supermercado.bll.interfaces.*;
 import supermercado.bll.util.Mensagem;
 import supermercado.bll.util.TipoMensagem;
-
-import java.util.*;
+import supermercado.dal.entidade.*;
 import supermercado.util.*;
 
 @Named
@@ -46,6 +46,9 @@ public class FuncionarioController {
 		this.funcionario.setUsuario(new Usuario());
 	}
 	
+	
+	
+
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -53,4 +56,7 @@ public class FuncionarioController {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+	
+	
+	
 }

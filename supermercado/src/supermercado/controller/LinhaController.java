@@ -1,6 +1,6 @@
 package supermercado.controller;
 
-import java.util.List;			
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +17,7 @@ import supermercado.dal.entidade.Linha;
 @Named
 @RequestScoped
 public class LinhaController {
+
 	private Linha linha;
 	
 	@EJB
@@ -30,6 +31,7 @@ public class LinhaController {
 	}
 	
 	public void salvar() {
+		
 		Mensagem msg = linhaEJB.salvar(linha);
 		
 		if(msg.getTipo() == TipoMensagem.sucesso) {
@@ -45,17 +47,20 @@ public class LinhaController {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							msg.getTexto(),null) );
 		}
+		
 	}
-	
+
 	public List<Linha> todos(){
-		return linhaEJB.obterTodos();
+		return linhaEJB.listar();
 	}
 	
 	public void editar(Linha linha) {
 		this.linha = linha;
 	}
 	
+	
 	public void excluir(Short idLinha) {
+		
 		Mensagem msg = linhaEJB.excluir(idLinha);
 		
 		if(msg.getTipo() == TipoMensagem.sucesso) {
@@ -69,14 +74,21 @@ public class LinhaController {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							msg.getTexto(),null) );
 		}
+		
+		
 	}
+
+	
+	
 	
 	public Linha getLinha() {
 		return linha;
 	}
-	
+
 	public void setLinha(Linha linha) {
 		this.linha = linha;
 	}
+	
+	
+	
 }
-
