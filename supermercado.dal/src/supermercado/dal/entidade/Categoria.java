@@ -4,12 +4,15 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name="categoria")
 public class Categoria {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCategoria;
 	
 	private String descricao;
 	
-	@ManyToMany(mappedBy="categoria")
+	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos;
 
 	public Integer getIdCategoria() {

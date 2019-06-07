@@ -6,6 +6,8 @@
 	  
 	  <ui:composition template="../layout.xhtml">
 	  
+	  <ui:debug hotkey="x" rendered="#{facesContext.application.projectStage == 'Development'}" />
+	  
 	  	<ui:define name="conteudo">
 	  	
 	  		<p:panel header="Categorias">
@@ -14,18 +16,19 @@
 	  			
 	  				<p:growl />
 	  			
-	  				<h:inputHidden value="#{categoriaController.categoria.idCategoria}" />
+	  				<h:inputHidden value="#{CategoriaController.categoria.idCategoria}" />
 	  			
 	  				<h:panelGrid columns="2">
 	  				
 	  					<p:outputLabel value="Descrição:" />
-	  					<p:inputText value="#{categoriaController.categoria.descricao}" />	
+	  					<p:inputText value="#{CategoriaController.categoria.descricao}" />	
 	  				
 	  				</h:panelGrid>
 	  				
 	  				<p:commandButton value="Salvar"
 	  								 actionListener="#{categoriaController.salvar()}"
-	  								 update="@form" />
+	  								 update="@form"
+	  								 process="@this" />
 	  			
 	  				<p:dataTable value="#{categoriaController.todos()}"
 	  							 var="categoria"

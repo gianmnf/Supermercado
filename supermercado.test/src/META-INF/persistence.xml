@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="supermercado" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+   		<jta-data-source>supermercadoDB</jta-data-source>
+		
+		<class>supermercado.dal.entidade.Categoria</class>
+		<class>supermercado.dal.entidade.Fornecedor</class>
+		<class>supermercado.dal.entidade.Funcionario</class>
+		<class>supermercado.dal.entidade.Linha</class>
+		<class>supermercado.dal.entidade.Marca</class>
+		<class>supermercado.dal.entidade.Pessoa</class>
+		<class>supermercado.dal.entidade.Produto</class>
+		<class>supermercado.dal.entidade.Usuario</class>
+		<class>supermercado.dal.entidade.Venda</class>
+		<class>supermercado.dal.entidade.VendaProduto</class>
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE"/>
+			<property name="eclipselink.logging.parameters" value="true"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+</persistence>
