@@ -1,9 +1,8 @@
 package supermercado.dal.entidade;
 
-import javax.persistence.*;	
+import javax.persistence.*;		
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
 import java.util.*;
 
 @Entity
@@ -32,6 +31,11 @@ public class Produto {
 	@JoinColumn(name = "idFornecedor")
 	@NotNull(message = "Informe o fornecedor")
 	private Fornecedor fornecedor;
+	
+	@ManyToOne
+	@JoinColumn(name = "idPagamento")
+	@NotNull(message = "Informe o método de pagamento")
+	private MetodoPagamento pagamento;
 	
 
 	@ManyToMany
@@ -105,6 +109,14 @@ public class Produto {
 
 	public void setVendaProdutos(List<VendaProduto> vendaProdutos) {
 		this.vendaProdutos = vendaProdutos;
+	}
+
+	public MetodoPagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(MetodoPagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 	@Override

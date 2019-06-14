@@ -64,6 +64,18 @@
 	  					
 	  					</p:selectCheckboxMenu>
 	  					
+	  					<p:outputLabel value="Métodos de Pagamento:" />
+	  					<p:selectOneMenu value="#{produtoController.produto.pagamento}" 
+	  									 filter="true"
+	  									 converter="entityConverter">
+	  						
+	  						<f:selectItems value="#{pagamentoController.todos()}"
+	  									   var="pagamento"
+	  									   itemLabel="#{pagamento.descricao}"
+	  									   itemValue="#{pagamento}" />
+	  									   
+	  					</p:selectOneMenu>
+	  					
 	  				</h:panelGrid>
 	  				
 	  				<p:commandButton value="Salvar"
@@ -112,6 +124,10 @@
 	  							
 	  							</ul>
 	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Métodos de Pagamento">
+	  							#{produto.pagamento.descricao}
 	  						</p:column>
 	  						
 	  						

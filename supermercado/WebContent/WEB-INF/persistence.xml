@@ -14,6 +14,7 @@
 		<class>supermercado.dal.entidade.Usuario</class>
 		<class>supermercado.dal.entidade.Pessoa</class>
 		<class>supermercado.dal.entidade.VendaProduto</class>
+		<class>supermercado.dal.entidade.MetodoPagamento</class>
 		
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE"/>

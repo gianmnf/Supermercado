@@ -1,6 +1,6 @@
 package supermercado.bll.interfaces;
 
-import java.util.List;	
+import java.util.List;		
 
 import supermercado.dal.entidade.Linha;
 import supermercado.bll.util.Mensagem;
