@@ -9,16 +9,22 @@
 		<title>Supermercado</title>
 		<meta name="viewport" 
 			content="width=device-width,initial-scale=1.0"/>
-		<style type="text/css">
-    body, form {
-        background-image: url('res/bkg.png') !important;
-    }
-</style>
+			<style>
+			@font-face {
+ 			font-family: encodesans;
+  			src: url(res/EncodeSansExpanded-Regular.ttf);
+			}
+			* {
+			font-family: encodesans, sans-serif;
+			}
+			</style>
 	</h:head>
 	
-	<h:body>
-
+	<h:body style="background-image: url(https://github.com/gianveloxbr/gianveloxbr.github.io/raw/master/images/bkg.png)">
+	<h:form>
 		<p:menubar rendered="#{autenticacaoController.usuarioAutenticado}">
+			<p:menuitem value="Home" 
+					url="/index.xhtml" />
 			<p:submenu label="Cadastros">
 				<p:menuitem value="Marca" url="/marca/cadastro.xhtml" />
 				<p:menuitem value="Fornecedor" url="/fornecedor/cadastro.xhtml" />
@@ -33,7 +39,13 @@
 					url="/funcionario/cadastro.xhtml" />
 			</p:submenu>
 			
+			<p:menuitem value="Sair"
+			actionListener="#{autenticacaoController.sair()}"/>
+			
+			 <p:menuitem
+			 value="Bem vindo #{autenticacaoController.usuario.login}"/>	
 		</p:menubar>
+	</h:form>
 	
 		<div id="conteudo">
 			<ui:insert name="conteudo"/>

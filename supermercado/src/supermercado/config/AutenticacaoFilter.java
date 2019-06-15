@@ -29,7 +29,10 @@ public class AutenticacaoFilter implements Filter{
 		
 		boolean isLoginRequest = request.getRequestURI().equals(loginURL);
 		boolean isXHTML = !request.getRequestURI().endsWith(".css.xhtml")
-							&& !request.getRequestURI().endsWith(".js.xhtml");
+							&& !request.getRequestURI().endsWith(".js.xhtml")
+							&& !request.getRequestURI().endsWith(".png")
+							&& !request.getRequestURI().endsWith(".css")
+							&& !request.getRequestURI().endsWith(".ttf");
 		boolean isAuth = autenticacaoController.isUsuarioAutenticado();
 		
 		if(isAuth || isLoginRequest || isXHTML == false) {
@@ -38,6 +41,7 @@ public class AutenticacaoFilter implements Filter{
 		}else {
 			response.sendRedirect(request.getContextPath() + "/login.xhtml");
 		}
+		
 		
 		
 		

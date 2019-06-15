@@ -22,6 +22,7 @@ public class AutenticacaoController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private boolean usuarioAutenticado;
+	private boolean cadastroPage;
 	
 	@EJB
 	private IUsuarioEJB usuarioEJB;
@@ -50,6 +51,12 @@ public class AutenticacaoController implements Serializable {
 		}
 	}
 	
+	public void sair() throws IOException{
+		this.usuario = new Usuario();
+		this.usuarioAutenticado = false;
+		String path = facesContext.getExternalContext().getRequestContextPath();
+		facesContext.getExternalContext().redirect(path + "/login.xhtml");
+	}
 	
 
 	public Usuario getUsuario() {
@@ -67,6 +74,15 @@ public class AutenticacaoController implements Serializable {
 	public void setUsuarioAutenticado(boolean usuarioAutenticado) {
 		this.usuarioAutenticado = usuarioAutenticado;
 	}
+
+	public boolean isCadastroPage() {
+		return cadastroPage;
+	}
+
+	public void setCadastroPage(boolean cadastroPage) {
+		this.cadastroPage = cadastroPage;
+	}
+
 	
 	
 	

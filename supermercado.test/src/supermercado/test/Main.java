@@ -5,7 +5,6 @@ import javax.ejb.embeddable.*;
 import javax.naming.*;
 
 import supermercado.dal.entidade.*;
-import supermercado.dal.dao.*;
 import supermercado.dal.dao.interfaces.IFornecedorDAO;
 
 public class Main {
