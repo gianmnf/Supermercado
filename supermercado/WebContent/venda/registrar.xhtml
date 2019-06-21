@@ -47,7 +47,7 @@
 
 
                         <h:outputLabel value="Produto:" />
-                        <p:selectOneMenu value="#{vendaController.vendaController.produto}"
+                        <p:selectOneMenu value="#{vendaController.vendaProduto.produto}"
                                          converter="entityConverter">
                             <f:selectItem itemLabel="Selecione um Produto" itemValue="" />
                             <f:selectItems value="#{produtoController.todos()}" var="v"
