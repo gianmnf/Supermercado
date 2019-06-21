@@ -1,6 +1,6 @@
 package supermercado.bll;
 
-import java.util.List;	
+import java.util.List;		
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -61,6 +61,12 @@ public class ProdutoEJB implements IProdutoEJB{
 	@Override
 	public List<Produto> listar() {
 		return produtoDAO.findAll();
+	}
+	
+	@Override
+	public Produto obter(Integer idProduto) {
+		// TODO Auto-generated method stub
+		return produtoDAO.findById(idProduto);
 	}
 
 }
