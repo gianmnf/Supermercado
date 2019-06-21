@@ -1,6 +1,6 @@
 package supermercado.controller;
 
-import java.io.Serializable;	
+import java.io.Serializable;			
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -53,7 +53,7 @@ public class VendaController implements Serializable {
 
     public void salvar() {
 
-        Mensagem mensagem = vendaEJB.salvar(venda);
+    	Mensagem mensagem = vendaEJB.salvar(venda);
 
         if (mensagem.getTipo() == TipoMensagem.sucesso) {
         	venda = new Venda();
@@ -64,7 +64,7 @@ public class VendaController implements Serializable {
     }
 
     public void listar() {
-        vendas = vendaEJB.listar(venda.getData());
+    	vendas = vendaEJB.listar(venda.getData());
     }
 
 
@@ -92,7 +92,7 @@ public class VendaController implements Serializable {
         if(ano != null) {
         	
 
-            List<GraficoLinha> linhas = vendaEJB.listar(ano);
+        	List<GraficoLinha> linhas = vendaEJB.listar(ano);
             if(linhas.size() == 0) return;
             graficoLinha = new LineChartModel();
             graficoLinha.getAxes().put(AxisType.X, new CategoryAxis("Meses"));
